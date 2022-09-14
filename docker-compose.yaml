@@ -1,14 +1,30 @@
 version: '3.7'
 services:
-  app:
+  frontend:
     build:
       context: .
+      dockerfile: Dockerfile.frontend
     image: cra:dev
     container_name: cra
     volumes:
-      - ./frontend/public:/app/public
-      - ./frontend/src:/app/src
+      - ./frontend/public:/frontend/public
+      - ./frontend/src:/frontend/src
     ports:
       - 3000:3000
     environment:
       - WATCHPACK_POLLING=true
+      - REACT_APP_API_URL=http://localhost:8000
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    image: api:dev
+    container_name: api
+    volumes:
+      - ./api/src:/api/src
+    ports:
+      - 8000:8000
+    environment:
+      - PORT=8000
+      - DB_URL=
+      - DB_NAME=root

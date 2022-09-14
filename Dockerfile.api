@@ -1,0 +1,5 @@
+FROM node:lts-alpine3.14
+COPY /api/package.json /api/package.json
+WORKDIR /api
+RUN npm install --silent
+CMD npm run dev
