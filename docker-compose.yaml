@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  app:
+    build:
+      context: .
+    image: cra:dev
+    container_name: cra
+    volumes:
+      - ./frontend/public:/app/public
+      - ./frontend/src:/app/src
+    ports:
+      - 3000:3000
+    environment:
+      - WATCHPACK_POLLING=true
