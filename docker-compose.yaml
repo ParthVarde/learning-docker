@@ -16,6 +16,7 @@ services:
       - REACT_APP_API_URL=http://localhost:8000
     depends_on:
       - db
+    tty: true
   api:
     build:
       context: .
